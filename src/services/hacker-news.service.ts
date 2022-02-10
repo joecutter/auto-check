@@ -194,6 +194,11 @@ export class HackerNewsService {
         break;
       }
 
+      //10 items
+      if (Object.keys(toMap).length === 10) {
+        return;
+      }
+
       toMap[modArr[i]] = true;
 
       if (resultToReturn) {
