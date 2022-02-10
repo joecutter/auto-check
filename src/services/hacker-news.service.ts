@@ -196,7 +196,8 @@ export class HackerNewsService {
 
       //10 items
       if (Object.keys(toMap).length === 10) {
-        return;
+        console.log('10 dup found ',toMap);
+        return toMap;
       }
 
       toMap[modArr[i]] = true;
