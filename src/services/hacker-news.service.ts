@@ -63,15 +63,15 @@ export class HackerNewsService {
 
     let topStories = await this.findTopStories().toPromise();
 
-    console.log('topStories Ids ', topStories);
+    // console.log('topStories Ids ', topStories);
 
     for (let i of topStories) {
-      console.log('i ', i);
+      // console.log('i ', i);
       console.log('counter ', counter++);
 
       items = await this.findItemById(i).toPromise();
 
-      console.log('items ', items['title']);
+      // console.log('items ', items['title']);
 
       stories.push(items['title']);
 
@@ -92,16 +92,16 @@ export class HackerNewsService {
 
     let weekAgo = moment().subtract(1, 'w').valueOf();
 
-    console.log('A week ', weekAgo);
+    // console.log('A week ', weekAgo);
 
     let topStoriesId = await this.findTopStories().toPromise();
 
-    console.log('topStories Ids ', topStoriesId);
+    // console.log('topStories Ids ', topStoriesId);
 
     for (let i of topStoriesId) {
       item = await this.findItemById(i).toPromise();
 
-      console.log('Story ', item);
+      // console.log('Story ', item);
 
       //check dates
       if (item.time <= weekAgo) {
@@ -111,6 +111,7 @@ export class HackerNewsService {
 
       //terminate at 10 stories
       if (stories.length > 10) {
+        console.log('stories done', stories);
         let recursiveSearch = this.mergeCharacters(stories);
         return recursiveSearch;
       }
@@ -127,18 +128,18 @@ export class HackerNewsService {
 
     let topStoriesId = await this.findTopStories().toPromise();
 
-    console.log('topStories Ids ', topStoriesId);
+    // console.log('topStories Ids ', topStoriesId);
 
     for (let i of topStoriesId) {
       console.log('counter ', counter++);
 
       items = await this.findItemById(i).toPromise();
 
-      console.log('items ', items);
+      // console.log('items ', items);
 
       user = await this.findUserById(items.by).toPromise();
 
-      console.log('User ', user);
+      // console.log('User ', user);
 
       if (user.karma >= 10000) {
         stories.push(items['title']);
