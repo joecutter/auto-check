@@ -12,7 +12,7 @@ export class HackerNewsService {
       .get('https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty')
       .pipe(
         map((response) => {
-          console.log('MaxId found ', response.data);
+          // console.log('MaxId found ', response.data);
           return response.data;
         }),
       );
@@ -154,18 +154,6 @@ export class HackerNewsService {
     }
   }
 
-  recursiveSearch(data) {
-    let arrOccurrences;
-    for (let i = 0; i < data.length; i++) {
-      arrOccurrences = data.filter((item) => {
-        console.log('Matched? ', item === data[i]);
-        return item === data[i];
-      });
-    }
-
-    return arrOccurrences;
-  }
-
   mergeCharacters(arr) {
     let titles = [];
     for (let i = 0; i < arr.length; i++) {
@@ -174,9 +162,37 @@ export class HackerNewsService {
       split.forEach((item) => titles.push(item));
     }
 
-    console.log('One big array ', titles);
+    // console.log('One big array ', titles);
 
-    return this.toFindDuplicates(titles);
+    return this.recursiveSearch(titles);
+  }
+
+  recursiveSearch(arr) {
+    const arry = arr.map((item) => item.toUpperCase());
+    console.log('normal ', arry);
+
+    let sorted_arr = arry.slice().sort();
+    let results = [];
+    let finalResult = new Set();
+
+    for (let i = 0; i < sorted_arr.length - 1; i++) {
+      if (sorted_arr[i + 1] == sorted_arr[i]) {
+        finalResult.add(sorted_arr[i]);
+      }
+    }
+
+    //unique values
+    //get 10
+
+    for (let j of [...new Set(finalResult)]) {
+      results.push(j);
+
+      if (results.length === 10) {
+        return results;
+      }
+    }
+
+    return results;
   }
 
   toFindDuplicates(arr) {
@@ -196,7 +212,7 @@ export class HackerNewsService {
 
       //10 items
       if (Object.keys(toMap).length === 10) {
-        console.log('10 dup found ',toMap);
+        console.log('10 dup found ', toMap);
         return toMap;
       }
 
@@ -211,6 +227,4 @@ export class HackerNewsService {
 
     return toMap;
   }
-
-  searchByDates() {}
 }

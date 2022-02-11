@@ -11,6 +11,10 @@ export class HackerNewsController {
   async queryLast25(): Promise<ApiResponse> {
     console.log('\n\nQuery last 25\n\n');
     const result = await this.hackerNewsService.findLast25(25);
+
+    if (!result) {
+      return new ApiResponse(400, false, Message.MSG_RECORD_NOT_FOUND, result);
+    }
     return new ApiResponse(200, true, Message.MSG_RECORD_FOUND, result);
   }
 
@@ -18,6 +22,10 @@ export class HackerNewsController {
   async queryLastWeek(): Promise<ApiResponse> {
     console.log('\n\nQuery last week\n\n');
     const result = await this.hackerNewsService.findLastWeek();
+
+    if (!result) {
+      return new ApiResponse(400, false, Message.MSG_RECORD_NOT_FOUND, result);
+    }
     return new ApiResponse(200, true, Message.MSG_RECORD_FOUND, result);
   }
 
@@ -25,6 +33,10 @@ export class HackerNewsController {
   async queryUserWithKarma(): Promise<ApiResponse> {
     console.log('\n\nQuery user with karma\n\n');
     const result = await this.hackerNewsService.findUserWithKarma(600);
+
+    if (!result) {
+      return new ApiResponse(400, false, Message.MSG_RECORD_NOT_FOUND, result);
+    }
     return new ApiResponse(200, true, Message.MSG_RECORD_FOUND, result);
   }
 }

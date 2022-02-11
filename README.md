@@ -15,6 +15,13 @@ Use command to run
 ```bash
 yarn start
 ```
+### Using docker
+
+```bash
+docker build -t nestjs .
+docker run -d --name nestjs -d --restart=unless-stopped -p 3111:3111 nestjs
+```
+
 ## endpoint
 
 To test endpoint

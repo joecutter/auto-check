@@ -12,7 +12,42 @@ describe('HackerNewsService', () => {
     service = module.get<HackerNewsService>(HackerNewsService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('should be return duplicates', () => {
+    const arr = [
+      'Is',
+      'it',
+      'even',
+      'worth',
+      'working',
+      'on',
+      'FOSS',
+      'anymore?',
+      'Betty',
+      'Davis',
+      'has',
+      'died',
+      'Seals',
+      'are',
+      'dying',
+      'in',
+      'droves',
+      'along',
+      'South',
+      "Africa's",
+      'coast',
+      'Video',
+      'shows',
+      'SpaceX',
+      'satellites',
+      'burning',
+      'up',
+      'due',
+      'to',
+      'solar',
+      'storm',
+    ];
+    const dups = service.toFindDuplicates(arr);
+
+    expect(dups).not.toBeNull()
   });
 });
