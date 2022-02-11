@@ -34,6 +34,7 @@ curl http://localhost:3111/hacker-news/last_25
 curl http://localhost:3111/hacker-news/last_week
 ```
 
+This endpoint is taking long since its fetching 600 posts and manipulating the same data
 ```bash
 curl http://localhost:3111/hacker-news/user_with_karma
 ```
